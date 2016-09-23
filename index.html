@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html  style="margin:0;padding:0">
   <head>
-  <script src="https://code.jquery.com/jquery-3.1.0.js"   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.1.0.js" integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"></script>
     <title>jQuery injection into webview preload</title>
   </head>
   <body style="margin:0px; padding:0px;overflow:hidden;">
-    <webview id="webview" preload="./manipulateGoogle.js" src="http://keep.google.com" style="position:absolute;width:100%;height:100%;"></webview>
+    <webview id="webview" preload="./src/injectKeep.js" src="http://keep.google.com" style="position:absolute;width:100%;height:100%;"></webview>
     <script>
     var webview = document.getElementById("webview")
-    webview.addEventListener("dom-ready", function() {
+    webview.addEventListener("loadcommit", function() {
+        webview.insertCSS(".gb_ec { background-color: red !important; }");
     });
     </script>
   </body>
