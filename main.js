@@ -27,7 +27,6 @@ mb.app.on('ready', () => {
   Keymap.initializeKeymap(electron.globalShortcut, 
     [{shorcut: 'CommandOrControl+Alt+K', function: mb.showWindow}]
   )
-
 })
 
 mb.app.on('window-all-closed', function () {
