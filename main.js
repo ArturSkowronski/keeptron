@@ -1,6 +1,7 @@
 const electron = require('electron')
 const menubar = require('menubar')
 const {Menu} = require('electron')
+
 require('electron-reload')(__dirname);
 require('electron-debug')({showDevTools: false});
 
