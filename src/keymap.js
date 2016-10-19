@@ -8,7 +8,7 @@ exports.initializeKeymap = (globalShortcut, keymap) => {
 
   	var ret = globalShortcut.register(x.shorcut, x.function)
 
-	if (ret && globalShortcut.isRegistered('CommandOrControl+Alt+K')) {
+	if (ret && globalShortcut.isRegistered(x.shorcut)) {
 	  console.log(`Keeptron: Shortcut ${x.shorcut} registered properly`)
 	} else {
 	  console.log(`Keeptron: Shortcut ${x.shorcut} not registered`)

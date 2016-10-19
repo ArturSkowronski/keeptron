@@ -25,7 +25,10 @@ mb.app.on('ready', () => {
  
   Menu.setApplicationMenu(Menu.buildFromTemplate(MenuTemplate(mb.app)));
   Keymap.initializeKeymap(electron.globalShortcut, 
-    [{shorcut: 'CommandOrControl+Alt+K', function: mb.showWindow}]
+    [
+      {shorcut: 'CommandOrControl+Alt+K', function: mb.showWindow},
+      {shorcut: 'Esc', function: mb.hideWindow}
+    ]
   )
 })
 
