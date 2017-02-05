@@ -1,6 +1,7 @@
 const electron = require('electron')
 const menubar = require('menubar')
 const {Menu} = require('electron')
+const AutoLaunch = require('auto-launch');
 
 require('electron-reload')(__dirname);
 require('electron-debug')({showDevTools: false});
@@ -10,11 +11,29 @@ const Keymap = require('./src/keymap.js')
 const ipc = electron.ipcMain;
 
 const menuBarConfiguration = {
-    width: 400, 
-    height: 600,
-    icon: __dirname + '/assets/keep.png',
-    preloadWindow: true
+  width: 400, 
+  height: 600,
+  icon: __dirname + '/assets/keep.png',
+  preloadWindow: true
 }
+
+var keeptronAutostart = new AutoLaunch({
+  name: 'Keeptron',
+  path: '/Applications/Keeptron.app',
+});
+
+
+keeptronAutostart.enable();
+keeptronAutostart.isEnabled()
+.then(function(isEnabled){
+  if(isEnabled){
+    return;
+  }
+  keeptronAutostart.enable();
+})
+.catch(function(err){
+    // handle error 
+  });
 
 const mb = menubar(menuBarConfiguration)
 
@@ -23,14 +42,14 @@ mb.on('after-create-window', function ready () {
 })
 
 mb.app.on('ready', () => {
- 
+
   Menu.setApplicationMenu(Menu.buildFromTemplate(MenuTemplate(mb.app)));
   Keymap.initializeKeymap(electron.globalShortcut, 
     [
-      {shorcut: 'CommandOrControl+Alt+K', function: mb.showWindow},
-      {shorcut: 'Esc', function: mb.hideWindow}
+    {shorcut: 'CommandOrControl+Alt+K', function: mb.showWindow},
+    {shorcut: 'Esc', function: mb.hideWindow}
     ]
-  )
+    )
 })
 
 mb.app.on('window-all-closed', function () {

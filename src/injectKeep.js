@@ -15,11 +15,11 @@ window.onload = function() {
 	// hideIfExists("gb_Xb")
 	hideIfExists("gb_gc")
 	hideIfExists("gb_Qb")
-	hideIfExists("gb_6b")
-	hideIfIdExists("gbm:9")
-	hideIfIdExists("gbm:a")
-	hideIfIdExists("gbm:b")
-	hideIfIdExists("gbm:c")
+	hideIfExists("gb_5b")
+	// hideIfIdExists("gbm:9")
+	// hideIfIdExists("gbm:a")
+	// hideIfIdExists("gbm:b")
+	// hideIfIdExists("gbm:c")
 
 
 };
