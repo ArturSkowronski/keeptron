@@ -4,7 +4,7 @@ const {Menu} = require('electron')
 const AutoLaunch = require('auto-launch');
 
 require('electron-reload')(__dirname);
-require('electron-debug')({showDevTools: false});
+require('electron-debug')({showDevTools: true});
 
 const MenuTemplate = require('./src/clipboard.js').template
 const Keymap = require('./src/keymap.js')
@@ -14,31 +14,35 @@ const menuBarConfiguration = {
   width: 400, 
   height: 600,
   icon: __dirname + '/assets/keep.png',
-  preloadWindow: true
+  preloadWindow: false
 }
-
-var keeptronAutostart = new AutoLaunch({
-  name: 'Keeptron',
-  path: '/Applications/Keeptron.app',
-});
-
-
-keeptronAutostart.enable();
-keeptronAutostart.isEnabled()
-.then(function(isEnabled){
-  if(isEnabled){
-    return;
-  }
-  keeptronAutostart.enable();
-})
-.catch(function(err){
-    // handle error 
-  });
 
 const mb = menubar(menuBarConfiguration)
 
 mb.on('after-create-window', function ready () {
   mb.window.focus();
+  var appPath = mb.app.getPath('exe').split('.app/Content')[0] + '.app';
+
+  var keeptronAutostart = new AutoLaunch({
+    name: mb.app.getName(),
+    path: appPath,
+  });
+
+  keeptronAutostart.enable().then(function(isEnabled){
+   console.log(isEnabled)
+ });
+
+  keeptronAutostart.isEnabled()
+  .then(function(isEnabled){
+   console.log(isEnabled)
+   if(isEnabled){
+    return;
+  }
+  keeptronAutostart.enable();
+})
+  .catch(function(err){
+   console.log(err)
+ });
 })
 
 mb.app.on('ready', () => {
