@@ -1,6 +1,6 @@
 {
   "name": "keeptron",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Desktop Application for Google Keep",
   "main": "main.js",
   "scripts": {
@@ -30,6 +30,7 @@
     "electron-debug": "1.0.1",
     "electron-is-dev": "0.1.2",
     "electron-localshortcut": "1.0.0",
+    "electron-open-link-in-browser": "1.0.2",
     "electron-reload": "1.0.2",
     "menubar": "5.1.0"
   }

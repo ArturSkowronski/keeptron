@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 <html  style="margin:0;padding:0">
-  <head>
+<head>
   <script src="https://code.jquery.com/jquery-3.1.0.js" integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"></script>
-    <title>jQuery injection into webview preload</title>
-  </head>
-  <body style="margin:0px; padding:0px;overflow:hidden;">
-    <webview id="webview" preload="./src/injectKeep.js" src="http://keep.google.com" style="position:absolute;width:100%;height:100%;"></webview>
-    <script>
+  <title>jQuery injection into webview preload</title>
+</head>
+<body style="margin:0px; padding:0px;overflow:hidden;">
+  <webview id="webview" preload="./src/injectKeep.js" src="http://keep.google.com" style="position:absolute;width:100%;height:100%;"></webview>
+  <script>
+    var shell = require('electron').shell;
+    //open links externally by default
 
     var webview = document.getElementById("webview")
     webview.addEventListener("dom-ready", function() {
-        webview.insertCSS(".gb_ec { background-color: red !important; }");
-        console.log("done")
+      webview.insertCSS(".gb_ec { background-color: red !important; }");
+      console.log("done")
     });
 
-  var ipcMain = require('electron').ipcMain
+    webview.addEventListener('new-window', (e) => {
+      console.log('new window event called');
+      const protocol = require('url').parse(e.url).protocol
+      if (protocol === 'http:' || protocol === 'https:') {
+        shell.openExternal(e.url)
+      }
+    });
 
-  webview.addEventListener("ipc-message", function (e) {
-    if (e.channel === "window-data") {
+    var ipcMain = require('electron').ipcMain
+
+    webview.addEventListener("ipc-message", function (e) {
+      if (e.channel === "window-data") {
       // console.log(e.args[0]);
 
       $(".tab.active .tab-favicon").attr("src", e.args[0].favicon);
@@ -43,6 +53,6 @@
     }
   });
 
-    </script>
-  </body>
+</script>
+</body>
 </html>

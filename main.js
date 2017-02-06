@@ -1,19 +1,27 @@
 const electron = require('electron')
 const menubar = require('menubar')
-const {Menu} = require('electron')
+const {Menu, Tray} = require('electron')
 const AutoLaunch = require('auto-launch');
-
-require('electron-reload')(__dirname);
-require('electron-debug')({showDevTools: true});
-
 const MenuTemplate = require('./src/clipboard.js').template
 const Keymap = require('./src/keymap.js')
 const ipc = electron.ipcMain;
 
+require('electron-reload')(__dirname);
+require('electron-debug')({showDevTools: false});
+
+
+var platform = require('os').platform();  
+var trayImage;  
+var imageFolder = __dirname + '/assets';
+
+if (platform == 'darwin') {  
+  trayImage = imageFolder + '/keepTemplate.png';
+}
+
 const menuBarConfiguration = {
   width: 400, 
   height: 600,
-  icon: __dirname + '/assets/keep.png',
+  icon: __dirname + '/assets/keepTemplate.png',
   preloadWindow: false
 }
 
@@ -46,6 +54,11 @@ mb.on('after-create-window', function ready () {
 })
 
 mb.app.on('ready', () => {
+  var appIcon = new Tray(trayImage);
+
+  if (platform == "darwin") {  
+    appIcon.setPressedImage(imageFolder + '/keepHighlight.png');
+  }
 
   Menu.setApplicationMenu(Menu.buildFromTemplate(MenuTemplate(mb.app)));
   Keymap.initializeKeymap(electron.globalShortcut, 
