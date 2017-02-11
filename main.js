@@ -69,10 +69,7 @@ mb.app.on('ready', () => {
 })
 
 mb.on('after-show', () => {
-  electron.globalShortcut.register('Esc', () => {
-    console.log('CommandOrControl+X is pressed')
-    mb.hideWindow()
-  })
+  electron.globalShortcut.register('Esc', mb.hideWindow)
 })
 
 
