@@ -63,10 +63,21 @@ mb.app.on('ready', () => {
   Menu.setApplicationMenu(Menu.buildFromTemplate(MenuTemplate(mb.app)));
   Keymap.initializeKeymap(electron.globalShortcut, 
     [
-    {shorcut: 'CommandOrControl+Alt+K', function: mb.showWindow},
-    {shorcut: 'Esc', function: mb.hideWindow}
+    {shorcut: 'CommandOrControl+Alt+K', function: mb.showWindow}
     ]
     )
+})
+
+mb.on('after-show', () => {
+  electron.globalShortcut.register('Esc', () => {
+    console.log('CommandOrControl+X is pressed')
+    mb.hideWindow()
+  })
+})
+
+
+mb.on('after-hide', () => {
+  electron.globalShortcut.unregister('Esc')
 })
 
 mb.app.on('window-all-closed', function () {
