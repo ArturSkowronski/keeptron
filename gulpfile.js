@@ -2,7 +2,6 @@
 
 const gulp = require('gulp');
 const eslint = require('gulp-eslint');
-const electronPacker = require("gulp-electron-packer");
 
 gulp.task('lint', () => {
     // ESLint ignores files with "node_modules" paths.
