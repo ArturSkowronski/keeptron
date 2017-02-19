@@ -7,13 +7,14 @@ const Keymap = require('./src/keymap.js');
 const winston = require('winston');
 const platform = require('os').platform();
 
-require('electron-reload')(__dirname);
 require('electron-debug')({ showDevTools: false });
 
 let trayImage;
 const imageFolder = `${__dirname}/assets`;
+const PLATFORM_OSX = 'darwin';
 
-if (platform === 'darwin') {
+
+if (platform === PLATFORM_OSX) {
   trayImage = `${imageFolder}/keepTemplate.png`;
 }
 
@@ -55,16 +56,12 @@ mb.on('after-create-window', () => {
 mb.app.on('ready', () => {
   const appIcon = new Tray(trayImage);
 
-  if (platform === 'darwin') {
+  if (platform === PLATFORM_OSX) {
     appIcon.setPressedImage(`${imageFolder}/keepHighlight.png`);
   }
 
   Menu.setApplicationMenu(Menu.buildFromTemplate(MenuTemplate(mb.app)));
-  Keymap.initializeKeymap(electron.globalShortcut,
-    [
-        { shortcut: 'CommandOrControl+Alt+K', function: mb.showWindow },
-    ],
-        );
+  Keymap.initializeKeymap(electron.globalShortcut, [{ shortcut: 'CommandOrControl+Alt+K', function: mb.showWindow }]);
 });
 
 mb.on('after-show', () => {
@@ -76,7 +73,7 @@ mb.on('after-hide', () => {
 });
 
 mb.app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
+  if (process.platform !== PLATFORM_OSX) {
     mb.app.quit();
   }
 });

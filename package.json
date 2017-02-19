@@ -44,7 +44,6 @@
     "electron-localshortcut": "1.0.0",
     "electron-open-link-in-browser": "1.0.2",
     "electron-packager": "8.5.1",
-    "electron-reload": "1.0.2",
     "menubar": "5.1.0",
     "winston": "2.3.1"
   }
