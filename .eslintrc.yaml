@@ -1,0 +1,14 @@
+extends: smartrecruiters/node/main
+env:
+  es6: true
+  node: true
+rules:
+  arrow-spacing: error
+  no-var: error
+  strict: error
+  prefer-const: error
+  prefer-template: error
+  template-curly-spacing: error
+  func-names:
+  - error
+  - never

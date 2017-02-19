@@ -23,6 +23,10 @@
   },
   "homepage": "https://github.com/ArturSkowronski/keeptron",
   "devDependencies": {
+    "eslint": "3.13.1",
+    "eslint-config-smartrecruiters": "git+ssh://git@github.com/smartrecruiters/eslint-config-smartrecruiters.git#1.0.0",
+    "eslint-plugin-import": "2.2.0",
+    "mocha": "3.2.0",
     "electron": "^1.3.4"
   },
   "dependencies": {
@@ -32,6 +36,7 @@
     "electron-localshortcut": "1.0.0",
     "electron-open-link-in-browser": "1.0.2",
     "electron-reload": "1.0.2",
-    "menubar": "5.1.0"
+    "menubar": "5.1.0",
+    "winston": "2.3.1"
   }
 }
