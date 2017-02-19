@@ -13,7 +13,7 @@ require('electron-debug')({ showDevTools: false });
 let trayImage;
 const imageFolder = `${__dirname}/assets`;
 
-if (platform == 'darwin') {
+if (platform === 'darwin') {
   trayImage = `${imageFolder}/keepTemplate.png`;
 }
 
