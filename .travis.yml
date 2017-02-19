@@ -1,4 +1,4 @@
 language: node_js
 before_script:
-  - yarn install -g gulp
+  - yarn global add gulp
 script: gulp lint
