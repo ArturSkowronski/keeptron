@@ -1,14 +1,12 @@
-'use strict';
-
 const gulp = require('gulp');
 const eslint = require('gulp-eslint');
 
-gulp.task('lint', () => {
+gulp.task('lint', () =>
     // ESLint ignores files with "node_modules" paths.
     // So, it's best to have gulp ignore the directory as well.
     // Also, Be sure to return the stream from the task;
     // Otherwise, the task may end before the stream has finished.
-    return gulp.src(['**/*.js', '!node_modules/**', '!dist/**'])
+     gulp.src(['**/*.js', '!node_modules/**', '!dist/**'])
     // eslint() attaches the lint output to the "eslint" property
     // of the file object so it can be used by other modules.
         .pipe(eslint())
@@ -17,11 +15,10 @@ gulp.task('lint', () => {
         .pipe(eslint.format())
         // To have the process exit with an error code (1) on
         // lint error, return the stream and pipe to failAfterError last.
-        .pipe(eslint.failAfterError());
-});
+        .pipe(eslint.failAfterError()));
 
 gulp.task('default', ['lint']);
 
-gulp.task('watch', function() {
-    gulp.watch(['**/*.js', '!node_modules/**', '!dist/**'], ['lint']);
+gulp.task('watch', () => {
+  gulp.watch(['**/*.js', '!node_modules/**', '!dist/**'], ['lint']);
 });
