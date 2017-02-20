@@ -1,7 +1,7 @@
-
 const winston = require('winston');
+const globalShortcut = require('electron').globalShortcut;
 
-exports.initializeKeymap = (globalShortcut, keymap) => {
+const initializeKeymap = (keymap) => {
   keymap.forEach((x) => {
     if (!x.shortcut || !x.function) {
       winston.info(`Keeptron: Shortcut ${x.shortcut} not registered for function ${x.function}`);
@@ -14,5 +14,26 @@ exports.initializeKeymap = (globalShortcut, keymap) => {
     } else {
       winston.info(`Keeptron: Shortcut ${x.shortcut} not registered`);
     }
+  });
+};
+
+exports.init = function (mb) {
+  mb.app.on('ready', () => {
+    initializeKeymap([{
+      shortcut: 'CommandOrControl+Alt+K',
+      function: mb.showWindow,
+    }]);
+  });
+
+  mb.on('after-show', () => {
+    globalShortcut.register('Esc', mb.hideWindow);
+  });
+
+  mb.on('after-hide', () => {
+    globalShortcut.unregister('Esc');
+  });
+
+  mb.app.on('will-quit', () => {
+    globalShortcut.unregisterAll();
   });
 };

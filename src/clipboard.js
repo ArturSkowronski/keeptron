@@ -1,4 +1,6 @@
-exports.template = app => [{
+const Menu = require('electron').Menu;
+
+const template = app => [{
   label: 'Application',
   submenu: [
             { label: 'About Application', selector: 'orderFrontStandardAboutPanel:' },
@@ -20,3 +22,9 @@ exports.template = app => [{
         { label: 'Select All', accelerator: 'CmdOrCtrl+A', selector: 'selectAll:' },
     ] },
 ];
+
+exports.init = function (mb) {
+  mb.app.on('ready', () => {
+    Menu.setApplicationMenu(Menu.buildFromTemplate(template(mb.app)));
+  });
+};
