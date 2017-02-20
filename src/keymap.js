@@ -2,17 +2,17 @@ const winston = require('winston');
 const globalShortcut = require('electron').globalShortcut;
 
 const initializeKeymap = (keymap) => {
-  keymap.forEach((x) => {
-    if (!x.shortcut || !x.function) {
-      winston.info(`Keeptron: Shortcut ${x.shortcut} not registered for function ${x.function}`);
+  keymap.forEach((item) => {
+    if (!item.shortcut || !item.function) {
+      winston.log(`Keeptron: Shortcut ${item.shortcut} not registered for function ${item.function}`);
       return;
     }
-    const ret = globalShortcut.register(x.shortcut, x.function);
+    const ret = globalShortcut.register(item.shortcut, item.function);
 
-    if (ret && globalShortcut.isRegistered(x.shortcut)) {
-      winston.info(`Keeptron: Shortcut ${x.shortcut} registered properly`);
+    if (ret && globalShortcut.isRegistered(item.shortcut)) {
+      winston.log(`Keeptron: Shortcut ${item.shortcut} registered properly`);
     } else {
-      winston.info(`Keeptron: Shortcut ${x.shortcut} not registered`);
+      winston.log(`Keeptron: Shortcut ${item.shortcut} not registered`);
     }
   });
 };

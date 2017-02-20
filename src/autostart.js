@@ -15,15 +15,15 @@ exports.init = function (mb) {
     });
 
     keeptronAutostart.isEnabled()
-        .then((isEnabled) => {
-          winston.info(isEnabled);
-          if (isEnabled) {
-            return;
-          }
-          keeptronAutostart.enable();
-        })
-        .catch((err) => {
-          winston.err(err);
-        });
+    .then((isEnabled) => {
+      winston.info(isEnabled);
+      if (isEnabled) {
+        return;
+      }
+      keeptronAutostart.enable();
+    })
+    .catch((err) => {
+      winston.err(err);
+    });
   });
 };
