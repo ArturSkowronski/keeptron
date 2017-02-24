@@ -7,6 +7,10 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
+    background-image: url('../res/splash.png');
+    background-color: #F4B400;
+    background-size: cover;
+
 }
 
 #keep-webview {
