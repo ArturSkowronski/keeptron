@@ -22,6 +22,7 @@ Version for Windows/Linux will be created as soon as application feature set wil
 
 ##Shortcuts
 **Cmd+Alt+K** - Opens Keeptron window
+
 **Esc (while Keeptron window open)** - Closes Keeptron window
 
 
