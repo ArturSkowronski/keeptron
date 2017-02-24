@@ -26,4 +26,4 @@ Version for Windows/Linux will be created as soon as application feature set wil
 ## If you want to do some development
 * Install Electron (npm install -g electron)
 * Clone this repo
-* npm install && npm start
+* npm install && npm run start
