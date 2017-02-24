@@ -21,7 +21,9 @@ Version for Windows/Linux will be created as soon as application feature set wil
 ![Example](http://i.imgur.com/XzCn6A0.jpg)
 
 ##Shortcuts
-*CMD + ALT + K* - Open Keeptron Window
+**Cmd+Alt+K** - Opens Keeptron window
+**Esc (while Keeptron window open)** - Closes Keeptron window
+
 
 ## If you want to do some development
 * Install Electron (npm install -g electron)
