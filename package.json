@@ -1,6 +1,6 @@
 {
   "name": "keeptron",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Desktop Application for Google Keep",
   "main": "main.js",
   "scripts": {
@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/ArturSkowronski/keeptron",
   "devDependencies": {
+    "electron-packager": "8.5.1",
     "eslint": "3.15.0",
     "eslint-config-airbnb": "14.1.0",
     "eslint-plugin-import": "2.2.0",
