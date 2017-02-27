@@ -1,7 +1,7 @@
 const winston = require('winston');
 const AutoLaunch = require('auto-launch');
 
-exports.init = function (mb) {
+exports.handle = function (mb) {
   mb.on('after-create-window', () => {
     const appPath = `${mb.app.getPath('exe').split('.app/Content')[0]}.app`;
 
@@ -13,7 +13,7 @@ exports.init = function (mb) {
     keeptronAutostart.isEnabled()
         .then((isEnabled) => {
           if (isEnabled) {
-            return;
+            keeptronAutostart.disable();
           }
           keeptronAutostart.enable();
         })
@@ -22,3 +22,4 @@ exports.init = function (mb) {
         });
   });
 };
+
