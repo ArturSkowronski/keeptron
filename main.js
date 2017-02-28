@@ -10,13 +10,19 @@ const AutoLaunch = require('auto-launch');
 const DebugMode = require('electron-debug');
 
 const PLATFORM_OSX = 'darwin';
+const IPC_AUTOLAUNCH_EVENT = 'handle-autolaunch';
 
-DebugMode({ showDevTools: false });
+DebugMode({ showDevTools: true });
 
-// Autostart.init(mb);
 Keymap.init(mb);
 Clipboard.init(mb);
 Tray.init(mb, config);
+
+// IPC Handlers
+mb.on('after-create-window', () => {
+  ipcMain.on(IPC_AUTOLAUNCH_EVENT, (event, arg) => AutoLaunch.handle(mb, event, arg));
+});
+
 
 mb.on('after-create-window', () => {
   mb.window.focus();
@@ -26,30 +32,4 @@ mb.app.on('window-all-closed', () => {
   if (config.process !== PLATFORM_OSX) {
     mb.app.quit();
   }
-});
-mb.on('after-create-window', () => {
-
-ipcMain.on('handle-autolaunch', (event, arg) => {
-  console.log(arg);
-    const appPath = `${mb.app.getPath('exe').split('.app/Content')[0]}.app`;
-
-    const keeptronAutostart = new AutoLaunch({
-      name: mb.app.getName(),
-      path: appPath,
-    });
-
-    keeptronAutostart.isEnabled()
-            .then((isEnabled) => {
-              if (isEnabled) {
-                console.log('diasable');
-                keeptronAutostart.disable();
-              } else {
-                console.log('enable');
-                keeptronAutostart.enable();
-              }
-            })
-            .catch((err) => {
-                // winston.err(err);
-            });
-  });
 });
