@@ -7,11 +7,25 @@
     bottom: 1em;
     right: 1em;
     z-index: 1000;
+    width: 50px;
+    height: 50px;
+    color: white;
 }
 
-.settings-icon a {
-    width: 50px;
-    height: 50px
+.settings-icon svg{
+    width: 40px;
+    height: 40px;
+    margin-top: 5px;
+    text-align: center;
+    fill: #9e7500;
+}
+
+.settings-icon:hover svg{
+    width: 40px;
+    height: 40px;
+    margin-top: 5px;
+    text-align: center;
+    fill: #FFBB00;
 }
 
 .modalDialog {
@@ -36,10 +50,59 @@
 }
 
 .modalDialog > div {
+    font-family: 'Roboto',arial,sans-serif;
     width: 200px;
     position: relative;
     margin: 10% auto;
     padding: 5px 20px 13px 20px;
-    border-radius: 10px;
     background: #fff;
+    -webkit-box-shadow: 2px 3px 3px 0px rgba(41, 41, 41, .3);
+    -moz-box-shadow: 2px 3px 3px 0px rgba(41, 41, 41, .3);
+    box-shadow: 2px 3px 3px 0px rgba(41, 41, 41, .3);
+}
+
+.close{
+    color: white;
+    text-decoration: none;
+    position: fixed;
+    top: 1em;
+    right: 1em;
+}
+
+.fab {
+    position: fixed;
+    bottom: 1em;
+    right: 1em;
+    z-index: 1000;
+    border:none;
+    font-size:1.5em;
+    color:white;
+    background-color: #FFBB00;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin: auto;
+    -webkit-box-shadow: 2px 3px 3px 0px rgba(41, 41, 41, .3);
+    -moz-box-shadow: 2px 3px 3px 0px rgba(41, 41, 41, .3);
+    box-shadow: 2px 3px 3px 0px rgba(41, 41, 41, .3);
+}
+
+.fab:hover {
+    background-color: #9e7500;
+}
+
+
+body {
+    margin: 1em;
+    background-color: white;
+    font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+}
+
+h2 {
+    color: #ccc;
+}
+
+h4 {
+    margin: 4px;
+    padding: 2px;
 }
